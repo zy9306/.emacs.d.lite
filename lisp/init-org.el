@@ -12,7 +12,8 @@
   (put 'org-download-image-dir 'safe-local-variable #'stringp))
 
 (use-package org
-  :hook ((org-mode . org-indent-mode))
+  :hook ((org-mode . org-indent-mode)
+         (org-mode . (lambda ()(display-line-numbers-mode -1))))
   :custom
   ;; (org-image-actual-width 600)
   (org-startup-numerated t)

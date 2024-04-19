@@ -12,7 +12,7 @@
 ;;;;;;;;;;;;;;
 ;; encoding ;;
 ;;;;;;;;;;;;;;
-; M-x revert-buffer-with-coding-system
+                                        ; M-x revert-buffer-with-coding-system
 (set-language-environment "UTF-8")
 (set-default-coding-systems 'utf-8)
 (set-buffer-file-coding-system 'utf-8)
@@ -26,28 +26,30 @@
 ;;;;;;;;;;;;;;;
 ;; font size ;;
 ;;;;;;;;;;;;;;;
-(setq font-size 13)
+                                        ; https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/RobotoMono.zip
+(setq font-size 14)
+(setq my-font (format "RobotoMono Nerd Font %d" font-size))
 (if (daemonp)
-    (add-to-list 'default-frame-alist '(font . (format "Menlo %d" font-size))))
+    (add-to-list 'default-frame-alist '(font . my-font)))
 (when *linux*
-  (set-face-attribute 'default nil :font (format "Menlo %d" font-size)))
+  (set-face-attribute 'default nil :font (format "RobotoMono Nerd Font %d" font-size)))
 (when *win*
-  (set-face-attribute 'default nil :font (format "Menlo %d" font-size))
+  (set-face-attribute 'default nil :font (format "RobotoMono Nerd Font %d" font-size))
   (set-default 'process-coding-system-alist
                '(("[pP][lL][iI][nN][kK]" gbk-dos . gbk-dos)
                  ("[cC][mM][dD][pP][rR][oO][xX][yY]" gbk-dos . gbk-dos))))
 (when *mac*
-  (set-face-attribute 'default nil :font (format "Menlo %d" font-size)))
+  (set-face-attribute 'default nil :font my-font))
 
 ;;;;;;;;;;;;;;
 ;; CJK Font ;;
 ;;;;;;;;;;;;;;
-(when (display-graphic-p)
-  (dolist (charset '(kana han symbol cjk-misc bopomofo))
-    (set-fontset-font (frame-parameter nil 'font)
-                      charset (font-spec :family "FZKai-Z03")))
-  ;; C-u C-x = 查看当前选中的字符所用的字体
-  (setq face-font-rescale-alist '(("FZKai-Z03" . 1.0))))
+;; (when (display-graphic-p)
+;;   (dolist (charset '(kana han symbol cjk-misc bopomofo))
+;;     (set-fontset-font (frame-parameter nil 'font)
+;;                       charset (font-spec :family "FZKai-Z03")))
+;;   ;; C-u C-x = 查看当前选中的字符所用的字体
+;;   (setq face-font-rescale-alist '(("FZKai-Z03" . 1.0))))
 
 ;;;;;;;;;
 ;; tab ;;
@@ -172,6 +174,31 @@
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (when (file-exists-p custom-file)
   (load custom-file))
+
+
+;;;;;;;;;;;
+;; theme ;;
+;;;;;;;;;;;
+(use-package nano-theme
+  :load-path "site-lisp/nano-theme"
+  :config
+  (load-theme 'nano t)
+  (nano-mode)
+  ;; https://github.com/rougier/nano-theme/blob/master/nano-theme-support.el#L412
+  (setq default-frame-alist
+        (append (list
+                 '(left . 300)
+                 '(top . 100)
+                 '(min-height . 1)  '(height . 45)
+                 '(min-width  . 1)  '(width  . 150)
+                 '(vertical-scroll-bars . nil)
+                 '(internal-border-width . 24)
+                 '(left-fringe . 0)
+                 '(right-fringe . 0)
+                 '(undecorated-round . t)
+                 '(scroll-bar-mode . -1)
+                 '(tool-bar-lines . 0)
+                 '(menu-bar-lines . 0)))))
 
 
 (provide 'init-config)

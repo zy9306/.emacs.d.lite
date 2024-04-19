@@ -3,11 +3,9 @@
 (setq native-comp-jit-compilation nil)
 (setq package-enable-at-startup nil)
 
-(setq default-frame-alist
-      '((height . 55)
-        (width . 170)))
-
-;; Suppress GUI features
+;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Suppress GUI features ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (setq use-file-dialog nil)
 (setq use-dialog-box nil)
 (setq inhibit-startup-screen t)
