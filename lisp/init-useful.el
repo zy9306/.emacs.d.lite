@@ -18,6 +18,11 @@
   (setq browse-kill-ring-show-preview t))
 (global-set-key (kbd "M-y") 'browse-kill-ring)
 
+(use-package easy-kill
+  :ensure t
+  :config
+  (global-set-key [remap kill-ring-save] 'easy-kill))
+
 (use-package anzu
   :ensure t
   :commands (anzu-query-replace-regexp anzu-query-replace)
