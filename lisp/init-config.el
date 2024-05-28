@@ -200,5 +200,16 @@
                  '(tool-bar-lines . 0)
                  '(menu-bar-lines . 0)))))
 
+(with-eval-after-load 'symbol-overlay
+  (if (display-graphic-p)
+      (set-face-attribute
+       'symbol-overlay-default-face nil
+       :background "darkseagreen2")))
+
+(set-face-attribute
+ 'region nil
+ :background "#E6E6E6"
+ :extend t)
+
 
 (provide 'init-config)
