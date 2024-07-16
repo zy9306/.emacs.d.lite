@@ -12,6 +12,7 @@
 (require 'init-mode)
 (require 'init-org)
 (require 'init-platform)
+(require 'init-llm)
 
 (server-start)
 
