@@ -184,21 +184,9 @@
   :config
   (load-theme 'nano t)
   (nano-mode)
-  ;; https://github.com/rougier/nano-theme/blob/master/nano-theme-support.el#L412
-  (setq default-frame-alist
-        (append (list
-                 '(left . 300)
-                 '(top . 100)
-                 '(min-height . 1)  '(height . 45)
-                 '(min-width  . 1)  '(width  . 150)
-                 '(vertical-scroll-bars . nil)
-                 '(internal-border-width . 24)
-                 '(left-fringe . 0)
-                 '(right-fringe . 0)
-                 '(undecorated-round . t)
-                 '(scroll-bar-mode . -1)
-                 '(tool-bar-lines . 0)
-                 '(menu-bar-lines . 0)))))
+  )
+
+(setq-default cursor-type 'box)
 
 (with-eval-after-load 'symbol-overlay
   (if (display-graphic-p)
